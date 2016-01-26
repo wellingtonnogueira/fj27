@@ -18,7 +18,7 @@ public class AppWebConfiguration {
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		
-		return resolver;
+		return resolver; //return the resolver
 	}
 
 }
