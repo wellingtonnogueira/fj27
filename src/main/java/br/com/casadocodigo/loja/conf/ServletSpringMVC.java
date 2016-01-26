@@ -12,7 +12,9 @@ public class ServletSpringMVC extends
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[]{AppWebConfiguration.class, JPAConfiguration.class};
+		return new Class[]{
+				AppWebConfiguration.class
+				, JPAConfiguration.class};
 	}
 
 	@Override
