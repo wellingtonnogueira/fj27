@@ -6,15 +6,18 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.casadocodigo.loja.controllers.HomeController;
+import br.com.casadocodigo.loja.daos.ProductDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class,ServletSpringMVC.class})
+@ComponentScan(basePackageClasses={
+		HomeController.class
+		,ServletSpringMVC.class
+		, ProductDAO.class})
 public class AppWebConfiguration {
 	
 	@Bean
 	private InternalResourceViewResolver internalResourceViewController() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		

@@ -1,7 +1,18 @@
 package br.com.casadocodigo.loja.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
 public class Product {
-	private String title, description;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	private String title;
+	
+	@Lob
+	private String description;
 	private int numberOfPages;
 	
 	public String getTitle() {
