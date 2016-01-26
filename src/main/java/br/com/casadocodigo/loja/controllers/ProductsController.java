@@ -21,7 +21,7 @@ public class ProductsController {
 	}
 	
 	@RequestMapping("/products")
-	@Transactional
+	@Transactional //the method must be **public**
 	public String save(Product products) {
 		System.out.println("Cadastrando o produto: " + products);
 		productDAO.save(products);
