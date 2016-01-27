@@ -24,6 +24,13 @@
 			<input type="text" name="numberOfPages" id="numberOfPages"/>
 		</div>
 		<div>
+			<c:forEach items="${types}" var="bookType" varStatus="status">
+				<label for="prices_${bookType}">${bookType}</label>
+				<input type="text" id="prices_${bookType}" name="prices[${status.index}].value" />
+				<input type="hidden" id="prices_${bookType}" name="prices[${status.index}].value" value="${bookType}" />
+			</c:forEach>
+		</div>
+		<div>
 			<input type="submit" value="Enviar" />
 		</div>
 	
