@@ -27,7 +27,7 @@
 			<c:forEach items="${types}" var="bookType" varStatus="status">
 				<label for="prices_${bookType}">${bookType}</label>
 				<input type="text" id="prices_${bookType}" name="prices[${status.index}].value" />
-				<input type="hidden" id="prices_${bookType}" name="prices[${status.index}].value" value="${bookType}" />
+				<input type="hidden" id="prices_${bookType}" name="prices[${status.index}].bookType" value="${bookType}" />
 			</c:forEach>
 		</div>
 		<div>
