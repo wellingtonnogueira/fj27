@@ -9,16 +9,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotBlank
 	private String title;
 	
 	@Lob
 	private String description;
+	
+	@Min(10)
 	private int numberOfPages;
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
