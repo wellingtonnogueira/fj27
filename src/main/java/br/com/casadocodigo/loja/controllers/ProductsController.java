@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.loja.daos.ProductDAO;
 import br.com.casadocodigo.loja.models.BookType;
@@ -29,10 +30,11 @@ public class ProductsController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	@Transactional //the method must be **public**
-	public String save(Product products) {
-		System.out.println("Cadastrando o produto: " + products);
-		productDAO.save(products);
-		return "products/ok";
+	public String save(Product product, RedirectAttributes ra) {
+		System.out.println("Cadastrando o produto: " + product);
+		productDAO.save(product);
+		ra.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
+		return "redirect:products";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
