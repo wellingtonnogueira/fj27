@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -19,9 +20,11 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Size(min=3)
 	@NotBlank
 	private String title;
 	
+	@NotBlank
 	@Lob
 	private String description;
 	
