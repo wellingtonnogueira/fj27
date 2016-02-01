@@ -11,7 +11,7 @@
 <body>
 
 	<c:url value="/products" var="url" />
-	<form:form action="${url}" method="post" commandName="product">
+	<form:form action="${url}" method="post" commandName="product" enctype="multipart/form-data">
 		<div>
 			<label for="title">Título</label>
 			<form:input path="title" id="title" />
@@ -43,6 +43,11 @@
 				<input type="hidden" id="prices_${bookType}" name="prices[${status.index}].bookType" value="${bookType}" />
 			</div>
 		</c:forEach>
+		<div>
+			<label for="summary">Sumário do livro</label>
+			<input type="file" id="summary" name="summary" />
+			<strong><form:errors path="summaryPath" /></strong>
+		</div>
 		<div>
 			<input type="submit" value="Enviar" />
 		</div>
