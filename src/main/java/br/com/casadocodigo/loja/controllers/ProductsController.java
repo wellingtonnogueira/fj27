@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,6 +67,14 @@ public class ProductsController {
 	public String list(Model model) {
 		model.addAttribute("products", productDAO.list());
 		return "products/list";
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/{id}")
+	public ModelAndView show(@PathVariable Integer id) {
+		ModelAndView mv = new ModelAndView("products/show");
+		mv.addObject("product", productDAO.find(id));
+		
+		return mv;
 	}
 	
 	@InitBinder

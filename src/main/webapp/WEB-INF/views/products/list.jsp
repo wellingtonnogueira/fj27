@@ -17,6 +17,8 @@ ${sucesso}
 		<td>No. de Páginas</td>
 		<td>Data de Lançamento</td>
 		<td>Valores</td>
+		<td>Detalhar</td>
+		
 	</tr>
 	<c:set var="incluido" value="${incluido}"/>
 	<c:forEach items="${products}" var="product">
@@ -30,6 +32,11 @@ ${sucesso}
 					${price.bookType} - ${price.value }
 				</c:forEach>
 			</td>
+			<td>
+				<c:url value="/products/${product.id }" var="linkDetalhar" />
+				<a href="${linkDetalhar }">Detalhar</a>
+			</td>
+			
 		</tr>
 	</c:forEach>
 </table>
