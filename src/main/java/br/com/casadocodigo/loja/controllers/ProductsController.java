@@ -65,6 +65,7 @@ public class ProductsController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String list(Model model) {
+		System.out.println("list");
 		model.addAttribute("products", productDAO.list());
 		return "products/list";
 	}

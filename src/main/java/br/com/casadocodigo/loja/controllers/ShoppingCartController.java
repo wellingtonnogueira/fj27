@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.controllers;
 
 import java.math.BigDecimal;
+import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,26 +42,32 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping(value="/checkout", method=RequestMethod.POST)
-	public String checkout() {
+	public Callable<String> checkout() {
 		System.out.println("Checkout");
 		
-		BigDecimal total = shoppingCart.getTotal();
-		
-		String uriToPay = "http://book-payment.herokuapp.com/payment";
-		
-		try {
-			String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
-			System.out.println(response);
+		return () -> {
 			
-			shoppingCart.getList().clear();
-
-			return "redirect:/products";
-
-		} catch (HttpClientErrorException e) {
-			//e.printStackTrace();
-			System.out.println("Ocorreu um erro ao criar o pagamento: " + e.getMessage());
-			return "redirect:/shopping";
-		}
+			BigDecimal total = shoppingCart.getTotal();
+			
+			String uriToPay = "http://book-payment.herokuapp.com/payment";
+			
+			try {
+				String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
+				try{Thread.sleep(1000);} catch(Exception e){}
+				System.out.println(response);
+				
+				shoppingCart.getList().clear();
+				
+				return "redirect:/products";
+				
+			} catch (HttpClientErrorException e) {
+				//e.printStackTrace();
+				System.out.println("Ocorreu um erro ao criar o pagamento: " + e.getMessage());
+				return "redirect:/shopping";
+			}
+			
+		};
+		
 		
 	}
 	
