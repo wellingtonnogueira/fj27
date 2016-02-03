@@ -4,6 +4,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,6 +45,7 @@ public class ProductsController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	@Transactional //the method must be **public**
+	@CacheEvict(value="lastProducts", allEntries=true)
 	public ModelAndView save(
 			@RequestParam("summary") MultipartFile summary,
 			@Valid Product product, BindingResult result, 
@@ -64,10 +67,12 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String list(Model model) {
+	@Cacheable(value="lastProducts")
+	public ModelAndView list() {
 		System.out.println("list");
-		model.addAttribute("products", productDAO.list());
-		return "products/list";
+		ModelAndView mv = new ModelAndView("products/list");
+		mv.addObject("products", productDAO.list());
+		return mv;
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")

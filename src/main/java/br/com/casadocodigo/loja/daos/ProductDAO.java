@@ -23,10 +23,12 @@ public class ProductDAO {
 	}
 	
 	public List<Product> list() {
-		return manager.createQuery(
+		System.out.println("Getting information");
+		TypedQuery<Product> query = manager.createQuery(
 				"select distinct(p) "
 				+ "from Product p "
-				+ "join fetch p.prices where p.releaseDate is not null and p.summaryPath is not null",Product.class).getResultList();
+				+ "join fetch p.prices where p.releaseDate is not null and p.summaryPath is not null",Product.class);
+		return query.getResultList();
 	}
 
 	public boolean contains(Product p) {
