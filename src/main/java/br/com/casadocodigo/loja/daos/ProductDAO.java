@@ -26,7 +26,7 @@ public class ProductDAO {
 		return manager.createQuery(
 				"select distinct(p) "
 				+ "from Product p "
-				+ "join fetch p.prices",Product.class).getResultList();
+				+ "join fetch p.prices where p.releaseDate is not null and p.summaryPath is not null",Product.class).getResultList();
 	}
 
 	public boolean contains(Product p) {
