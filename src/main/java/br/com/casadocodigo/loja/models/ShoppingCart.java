@@ -56,4 +56,8 @@ public class ShoppingCart implements Serializable {
 		return items.isEmpty();
 	}
 
+	public void clear() {
+		getList().clear();		
+	}
+
 }
