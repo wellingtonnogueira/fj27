@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,11 +50,16 @@ public class ShoppingCartController {
 		return () -> {
 			
 			BigDecimal total = shoppingCart.getTotal();
+
+			//definindo header para JSON
+			HttpHeaders header = new HttpHeaders();
+			header.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
+			HttpEntity<PaymentData> entity = new HttpEntity<PaymentData>(new PaymentData(total), header);
 			
 			String uriToPay = "http://book-payment.herokuapp.com/payment";
-			
 			try {
-				String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
+				String response = restTemplate.postForObject(uriToPay, entity, String.class);
+				//String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
 				System.out.println(response);
 				
 				shoppingCart.clear();
