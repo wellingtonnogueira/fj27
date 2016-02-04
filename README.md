@@ -12,8 +12,8 @@ http://www.thymeleaf.org/
 
 To see:
 http://www.setupmyproject.com/
-HOW IT WORKS
 
 https://spring.io/guides/
 
-
+HTTP Component
+https://hc.apache.org/
