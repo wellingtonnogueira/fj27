@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +36,7 @@ public class ProductsController {
 	@Autowired
 	private FileSaver fileSaver;
 
+	@Secured("hasRole('ADMIN')")
 	@RequestMapping("/form")
 	public ModelAndView form(Product product) {
 		ModelAndView mv = new ModelAndView("products/form");

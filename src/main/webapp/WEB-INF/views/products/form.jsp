@@ -9,9 +9,11 @@
 <title>Cadastro de Livros</title>
 </head>
 <body>
+	<c:url value="/" var="contexto" />
+	<a href="${contexto }/logout">Logout</a>
 
 	<c:url value="/products" var="url" />
-	<form:form action="${url}" method="post" commandName="product" enctype="multipart/form-data"> --%>
+	<form:form action="${url}" method="post" commandName="product" enctype="multipart/form-data">
 <%-- 	<form:form servletRelativeAction="${url}" method="post" commandName="product" enctype="multipart/form-data"> --%>
 <%-- 	<form:form action="${spring:mvcUrl('PC#save').build()}" method="post" commandName="product" enctype="multipart/form-data"> --%>
 		<div>
