@@ -11,7 +11,9 @@
 <body>
 
 	<c:url value="/products" var="url" />
-	<form:form action="${url}" method="post" commandName="product" enctype="multipart/form-data">
+	<form:form action="${url}" method="post" commandName="product" enctype="multipart/form-data"> --%>
+<%-- 	<form:form servletRelativeAction="${url}" method="post" commandName="product" enctype="multipart/form-data"> --%>
+<%-- 	<form:form action="${spring:mvcUrl('PC#save').build()}" method="post" commandName="product" enctype="multipart/form-data"> --%>
 		<div>
 			<label for="title">Título</label>
 			<form:input path="title" id="title" />

@@ -100,7 +100,7 @@
 		</header>
 		
 		<section class="buy-options clearfix">
-			<form action="${shoppingCartUrl}" method="post" class="container">
+			<form:form action="${shoppingCartUrl}" method="post" class="container">
 				<input type="hidden" value="${product.id}" name="productId"/>
 				<ul id="variants" class="clearfix">
 					<c:forEach items="${product.prices}" var="price">
@@ -117,7 +117,7 @@
 				</ul>
 
 				<input type="submit" class="submit-image icon-basket-alt" alt="Compre agora" title="Compre agora '${product.title}'!" value="comprar"/>
-			</form>
+			</form:form>
 		</section>
 
 		<div class="container">
@@ -214,7 +214,7 @@
 				<!-- social-footer -->
 				<p class="footer-title">Receba as Novidades e Lançamentos</p>
 				<div id="form-newsletter">
-					<form action="https://docs.google.com/spreadsheet/formResponse?formkey=dFhxZ2tDalFiclU4T2FLZVY4UXVUc2c6MQ&embedded=true&ifq"
+					<form:form action="https://docs.google.com/spreadsheet/formResponse?formkey=dFhxZ2tDalFiclU4T2FLZVY4UXVUc2c6MQ&embedded=true&ifq"
 						method="POST" id="ss-form" class="form-newsletter">
 						<ul>
 							<li>
@@ -226,7 +226,7 @@
 								<input type="submit" name="submit" value="Quero Receber!" id="submit-newsletter">
 							</li>
 						</ul>
-					</form>
+					</form:form>
 					
 					<ul>
 						<li class="ie8">
