@@ -10,7 +10,9 @@
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication property="principal" var="user"/>
 		<div>
-			Olá ${user.name}
+			<fmt:message key="users.welcome">
+				<fmt:param value="${user.name }" />
+			</fmt:message>
 		</div>
 	</sec:authorize>
 	
