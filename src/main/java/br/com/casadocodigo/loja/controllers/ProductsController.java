@@ -36,7 +36,7 @@ public class ProductsController {
 	@Autowired
 	private FileSaver fileSaver;
 
-	@Secured("hasRole('ADMIN')")
+	//@Secured("hasRole('ADMIN')")
 	@RequestMapping("/form")
 	public ModelAndView form(Product product) {
 		ModelAndView mv = new ModelAndView("products/form");

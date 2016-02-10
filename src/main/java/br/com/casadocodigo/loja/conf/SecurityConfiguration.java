@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-//		.antMatchers("/products/form").hasRole("ADMIN") //Movido para annotation em ProductController
+		.antMatchers("/products/form").hasRole("ADMIN") //Movido para annotation em ProductController
 		.antMatchers("/shopping/**").hasRole("COMPRADOR")
 		.antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
 		.antMatchers("/products/**").permitAll()
