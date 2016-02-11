@@ -60,6 +60,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 		
 		return resolver; //return the resolver
 	}
+	
 	@Bean
 	public MessageSource messageSource() {
 		
